@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>朱颖的旅行笔记</title>
+    <meta
+      name="description"
+      content="记录旅行心得、城市散步、照片和路上的小发现。"
+    >
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html">Zhuying Trips</a>
+      <nav aria-label="主导航">
+        <a href="#trips">游记</a>
+        <a href="#gallery">照片</a>
+        <a href="#notes">心得</a>
+        <a href="#about">关于</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="eyebrow">Travel notes / photo diary / city walks</p>
+        <h1 id="hero-title">把走过的地方，慢慢放在这里。</h1>
+        <p class="hero-text">
+          这里用来存旅行心得和照片：城市、路线、住过的街区、吃到的东西、
+          喜欢的角落，以及回来之后还想记住的瞬间。
+        </p>
+      </section>
+
+      <section class="featured" aria-labelledby="featured-title">
+        <div>
+          <p class="eyebrow">Latest trip</p>
+          <h2 id="featured-title">最近的一次旅行</h2>
+        </div>
+        <article class="feature-card" id="featured-trip"></article>
+      </section>
+
+      <section class="section" id="trips" aria-labelledby="trips-title">
+        <div class="section-head">
+          <p class="eyebrow">Archive</p>
+          <h2 id="trips-title">游记</h2>
+        </div>
+        <div class="trip-grid" id="trip-grid"></div>
+      </section>
+
+      <section class="section" id="gallery" aria-labelledby="gallery-title">
+        <div class="section-head">
+          <p class="eyebrow">Gallery</p>
+          <h2 id="gallery-title">照片</h2>
+        </div>
+        <div class="photo-wall" id="photo-wall"></div>
+      </section>
+
+      <section class="section notes-section" id="notes" aria-labelledby="notes-title">
+        <div class="section-head">
+          <p class="eyebrow">Notes</p>
+          <h2 id="notes-title">旅行心得</h2>
+        </div>
+        <div class="note-list" id="note-list"></div>
+      </section>
+
+      <section class="about" id="about" aria-labelledby="about-title">
+        <p class="eyebrow">About</p>
+        <h2 id="about-title">关于这个小站</h2>
+        <p>
+          这是一个专门存旅行记录的地方。可以放照片、路线、花费、住宿感受、
+          城市印象，也可以只写一小段当时的心情。
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Updated after the trip, remembered for later.</p>
+    </footer>
+
+    <script src="./data/trips.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

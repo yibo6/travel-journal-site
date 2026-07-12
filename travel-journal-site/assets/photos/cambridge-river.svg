@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680">
+  <rect width="900" height="680" fill="#f6f1e7"/>
+  <rect y="0" width="900" height="360" fill="#dfe8dc"/>
+  <path d="M0 435 C145 365, 250 500, 390 425 S665 340, 900 455 V680 H0Z" fill="#8fa8b5" opacity=".72"/>
+  <path d="M120 330 C235 270, 365 270, 500 330" fill="none" stroke="#9b8060" stroke-width="16"/>
+  <path d="M135 333 H485" stroke="#f7f1e8" stroke-width="8" opacity=".8"/>
+  <circle cx="200" cy="218" r="42" fill="#7f916d" opacity=".8"/>
+  <circle cx="690" cy="250" r="58" fill="#9aaa86" opacity=".72"/>
+  <text x="450" y="625" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#6d7769">Cambridge river</text>
+</svg>
