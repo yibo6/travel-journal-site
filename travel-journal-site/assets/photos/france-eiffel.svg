@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680">
-  <rect width="900" height="680" fill="#f8f3e8"/>
-  <circle cx="220" cy="150" r="56" fill="#ef9aa2" opacity=".42"/>
-  <path d="M450 120 L350 535 H550 Z" fill="none" stroke="#6f8167" stroke-width="16" stroke-linejoin="round"/>
-  <path d="M392 300 H508 M374 390 H526 M340 535 H560" stroke="#6f8167" stroke-width="14" stroke-linecap="round"/>
-  <path d="M390 535 C420 470, 480 470, 510 535" fill="none" stroke="#6f8167" stroke-width="14"/>
-  <path d="M155 545 H745" stroke="#dccab3" stroke-width="14" stroke-linecap="round"/>
-  <text x="450" y="610" text-anchor="middle" font-family="Georgia, serif" font-size="36" fill="#6f8167">France</text>
-</svg>

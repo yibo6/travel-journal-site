@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680">
-  <rect width="900" height="680" fill="#edf3f4"/>
-  <rect y="0" width="900" height="350" fill="#d8e6ea"/>
-  <path d="M0 365 C110 335, 190 388, 290 358 S490 325, 610 365 S780 390, 900 345 V680 H0Z" fill="#879bab" opacity=".72"/>
-  <path d="M0 465 C140 435, 260 485, 410 455 S720 420, 900 460" fill="none" stroke="#f8f3e8" stroke-width="14" opacity=".78"/>
-  <rect x="120" y="510" width="660" height="60" fill="#d6c4a4" opacity=".78"/>
-  <circle cx="710" cy="145" r="44" fill="#f3d28b" opacity=".7"/>
-  <text x="450" y="625" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#6c7880">Brighton sea</text>
-</svg>

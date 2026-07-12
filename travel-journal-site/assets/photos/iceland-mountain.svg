@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680">
-  <rect width="900" height="680" fill="#eef7f7"/>
-  <path d="M130 500 L320 220 L470 500 Z" fill="#9cc0c8"/>
-  <path d="M310 500 L540 170 L770 500 Z" fill="#72a9c8" opacity=".75"/>
-  <path d="M320 220 L370 300 L280 300 Z M540 170 L610 280 L480 280 Z" fill="#fff"/>
-  <path d="M120 535 C240 500, 330 560, 450 530 S680 492, 790 535" fill="none" stroke="#6f8167" stroke-width="14" stroke-linecap="round" opacity=".6"/>
-  <circle cx="710" cy="120" r="52" fill="#f6c86b" opacity=".42"/>
-  <text x="450" y="610" text-anchor="middle" font-family="Georgia, serif" font-size="36" fill="#5f8490">Iceland</text>
-</svg>

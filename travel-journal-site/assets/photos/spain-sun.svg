@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680">
-  <rect width="900" height="680" fill="#fff6df"/>
-  <circle cx="450" cy="210" r="96" fill="#f6c86b" opacity=".82"/>
-  <path d="M450 78 V40 M450 380 V342 M318 210 H280 M620 210 H582 M356 116 L330 90 M570 330 L544 304 M544 116 L570 90 M330 330 L356 304" stroke="#f0b45f" stroke-width="13" stroke-linecap="round"/>
-  <rect x="190" y="390" width="520" height="120" rx="18" fill="#ef9aa2" opacity=".68"/>
-  <path d="M230 510 V350 H330 V510 M380 510 V330 H500 V510 M550 510 V365 H670 V510" fill="#f2c38f"/>
-  <text x="450" y="600" text-anchor="middle" font-family="Georgia, serif" font-size="36" fill="#a06755">Spain</text>
-</svg>

@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680">
-  <rect width="900" height="680" fill="#fff1df"/>
-  <path d="M300 500 V310 H600 V500" fill="#eaa879"/>
-  <path d="M330 310 C350 215, 550 215, 570 310 Z" fill="#ef9aa2"/>
-  <rect x="420" y="150" width="60" height="90" rx="8" fill="#72a9c8"/>
-  <path d="M390 500 V380 H510 V500 M545 500 V385 H585 V500" fill="#fff7ed"/>
-  <path d="M260 500 H640" stroke="#d8b58d" stroke-width="15" stroke-linecap="round"/>
-  <text x="450" y="600" text-anchor="middle" font-family="Georgia, serif" font-size="36" fill="#9a6b55">Italy</text>
-</svg>
