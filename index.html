@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ying's Little Atlas - 小颖漫游中</title>
+    <meta
+      name="description"
+      content="记录旅行心得、城市散步、照片和路上的小发现。"
+    >
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html">Ying's Little Atlas</a>
+      <nav aria-label="主导航">
+        <a href="./index.html">路线</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="map-section top-map" id="map-view" aria-labelledby="map-title">
+        <div class="map-intro">
+          <div>
+            <p class="eyebrow">Ying's Little Atlas</p>
+            <h1 id="map-title">小颖漫游中</h1>
+          </div>
+          <p>
+            点开一个小地标，随机掉落一段旅行记忆。
+          </p>
+          <span class="scroll-hint">向下滑，继续漫游</span>
+        </div>
+        <div class="travel-map" id="travel-map" aria-label="旅行地点地图"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Updated after the trip, remembered for later.</p>
+    </footer>
+
+    <div class="lightbox" id="lightbox" hidden>
+      <button class="lightbox-close" type="button" aria-label="关闭照片">×</button>
+      <img src="" alt="">
+      <p></p>
+    </div>
+
+    <button class="back-top" id="back-top" type="button" aria-label="回到顶部">↑</button>
+
+    <script src="./data/trips.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
