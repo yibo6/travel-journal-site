@@ -1,4 +1,4 @@
-const trips = window.TRIPS || [];
+let trips = window.TRIPS || [];
 
 const travelMap = document.querySelector("#travel-map");
 const tripPage = document.querySelector("#trip-page");
@@ -41,12 +41,141 @@ function photoGroups(trip) {
   ];
 }
 
+function groupPhotos(rows = []) {
+  return rows.reduce(
+    (groups, photo) => {
+      const category = groups[photo.category] ? photo.category : "scenery";
+      groups[category].push({ src: photo.src, caption: photo.caption });
+      return groups;
+    },
+    { scenery: [], me: [], food: [] },
+  );
+}
+
+async function loadRemoteTrips() {
+  try {
+    const response = await fetch("./api/trips", { headers: { Accept: "application/json" } });
+    if (!response.ok) return null;
+    const data = await response.json();
+    return data.trips?.length ? data.trips : null;
+  } catch (error) {
+    console.warn("Using local trip data.", error);
+    return null;
+  }
+}
+
 function renderPhotoButton(photo, place) {
   return `
     <button type="button" data-photo="${photo.src}" data-caption="${photo.caption} · ${place}">
       <img src="${photo.src}" alt="${photo.caption}">
       <span>${photo.caption}</span>
     </button>
+  `;
+}
+
+function renderChinaMap(map) {
+  return `
+    <div class="footprint-map">
+      <svg class="country-sketch country-sketch-china" viewBox="0 0 620 440" aria-hidden="true">
+        <path class="country-shape" d="M82 154 C118 102, 170 112, 214 76 C256 42, 316 44, 354 74 C386 54, 434 66, 462 98 C504 96, 548 124, 556 166 C566 214, 524 236, 520 272 C516 314, 464 328, 430 314 C400 350, 342 352, 306 328 C270 364, 214 350, 190 314 C146 318, 104 282, 116 236 C78 220, 54 184, 82 154 Z" />
+        <path class="country-coast" d="M462 98 C440 130, 458 160, 430 184 C402 208, 424 236, 396 264 C372 288, 398 308, 430 314" />
+        <path class="country-line" d="M140 154 C226 118, 332 122, 438 166" />
+        <path class="country-line" d="M126 238 C222 206, 340 214, 456 262" />
+        <path class="country-line" d="M314 76 C286 148, 286 236, 318 324" />
+        <path class="country-island" d="M474 350 C492 334, 514 346, 508 370 C498 394, 468 384, 474 350 Z" />
+        <path class="country-island" d="M446 374 C456 366, 468 372, 466 386 C454 394, 442 388, 446 374 Z" />
+      </svg>
+      ${map.places
+        .map(
+          (place) => `
+            <a
+              class="map-place ${place.visited ? "visited" : ""}"
+              href="#city-${place.id}"
+              style="left: ${place.x}%; top: ${place.y}%"
+            >
+              <span></span>
+              <strong>${place.name}</strong>
+            </a>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function renderFootprintMap(trip) {
+  if (!trip.footprintMap) return "";
+  const map = trip.footprintMap;
+
+  return `
+    <section class="detail-section footprint-section">
+      <p class="eyebrow">Footprint map</p>
+      <h2>${map.title}</h2>
+      <p class="section-note">${map.note}</p>
+      ${renderChinaMap(map)}
+    </section>
+  `;
+}
+
+function renderCityPhotoGroups(city) {
+  return photoGroups(city)
+    .map(
+      (group) => `
+        <section class="photo-category photo-category-${group.key}">
+          <h4>${group.title}</h4>
+          ${
+            group.photos.length
+              ? `<div class="detail-gallery">${group.photos
+                  .map((photo) => renderPhotoButton(photo, city.name))
+                  .join("")}</div>`
+              : `<p class="empty-state">这一格先空着，等照片慢慢掉落。</p>`
+          }
+        </section>
+      `,
+    )
+    .join("");
+}
+
+function renderCities(trip) {
+  if (!trip.cities?.length) return "";
+
+  return `
+    <section class="detail-section city-section">
+      <p class="eyebrow">Cities</p>
+      <h2>城市小格子</h2>
+      <div class="city-list">
+        ${trip.cities
+          .map(
+            (city) => `
+              <article class="city-card" id="city-${city.id}">
+                <div class="city-card-head">
+                  <div>
+                    <p class="meta">${city.date}</p>
+                    <h3>${city.name}</h3>
+                  </div>
+                  <p>${city.summary}</p>
+                </div>
+                <div class="diary-list city-diary">
+                  ${diaryEntries(city)
+                    .map(
+                      (entry) => `
+                        <article class="diary-item">
+                          <time>${entry.date}</time>
+                          <p>${entry.memory}</p>
+                        </article>
+                      `,
+                    )
+                    .join("")}
+                </div>
+                <div class="photo-groups city-photo-groups">
+                  ${renderCityPhotoGroups(city)}
+                </div>
+              </article>
+            `,
+          )
+          .join("")}
+      </div>
+    </section>
   `;
 }
 
@@ -207,11 +336,10 @@ function renderTripPage() {
     trips[0];
   document.title = `${trip.title} - Ying's Little Atlas`;
 
-  tripPage.innerHTML = `
-    <a class="back-map" href="./index.html">← 返回路线</a>
-    <article class="place-detail">
+  const introHero = trip.footprintMap
+    ? ""
+    : `
       <div class="detail-hero">
-        <img src="${trip.cover}" alt="${trip.title}">
         <div>
           <p class="meta">${trip.place} / ${trip.date}</p>
           <h1>${trip.title}</h1>
@@ -219,6 +347,10 @@ function renderTripPage() {
           <div class="tags">${tagList(trip.tags)}</div>
         </div>
       </div>
+    `;
+  const baseSections = trip.cities?.length
+    ? ""
+    : `
       <section class="detail-section">
         <p class="eyebrow">Travel diary</p>
         <h2>旅游日记</h2>
@@ -257,6 +389,15 @@ function renderTripPage() {
             .join("")}
         </div>
       </section>
+    `;
+
+  tripPage.innerHTML = `
+    <a class="back-map" href="./index.html">← 返回路线</a>
+    <article class="place-detail">
+      ${introHero}
+      ${renderFootprintMap(trip)}
+      ${renderCities(trip)}
+      ${baseSections}
     </article>
   `;
 }
@@ -276,9 +417,14 @@ function closeLightbox() {
   document.body.classList.remove("modal-open");
 }
 
-renderRoute();
-startRouteAnimation();
-renderTripPage();
+async function initSite() {
+  trips = (await loadRemoteTrips()) || window.TRIPS || [];
+  renderRoute();
+  startRouteAnimation();
+  renderTripPage();
+}
+
+initSite();
 
 document.addEventListener("click", (event) => {
   const photoButton = event.target.closest("[data-photo]");

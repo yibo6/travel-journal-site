@@ -1,111 +1,140 @@
 # Ying's Little Atlas / 小颖漫游中
 
-这是一个可以直接放到 GitHub Pages 的纯静态旅行网站。
+这是一个旅行记录网站。它可以先当静态网站用，也可以接 Cloudflare 免费档的 D1 + R2，变成可以登录后台更新的动态网站。
+
+## 现在包含什么
+
+- 首页旅行路线：`中国 -> 迪拜 -> 英国 -> 法国 -> 西班牙 -> 意大利 -> 冰岛`
+- 国家/城市详情页
+- 中国旅游足迹地图
+- 照片分类：`我拍的 / 我本人 / 我吃的`
+- 后台页面：`/admin.html`
+- Cloudflare Pages Functions API：`/api/...`
+- D1 初始化脚本：`cloudflare-d1-schema.sql`
+
+如果 Cloudflare D1/R2 还没配置，网站会继续读取 `data/trips.js`，所以不会白屏。
 
 ## 上传到 GitHub
 
-把这个文件夹里的内容上传到仓库根目录：
+把这个文件夹里的内容上传到仓库根目录，不要把外层文件夹套进去。
+
+需要包含：
 
 ```text
-.nojekyll
 index.html
 trip.html
+admin.html
 styles.css
+admin.css
 script.js
+admin.js
 data/
 assets/
+functions/
+cloudflare-d1-schema.sql
+wrangler.toml.example
+.nojekyll
 ```
 
 不要上传 `.DS_Store`。
 
-GitHub Pages 设置：
+## Cloudflare 免费动态版设置
+
+在 Cloudflare 里继续使用你的 Pages 项目。
+
+### 1. 创建 D1 数据库
+
+Cloudflare 左侧找到：
 
 ```text
-Settings -> Pages
-Source: Deploy from a branch
-Branch: main
-Folder: /root
+Storage & Databases -> D1 SQL Database
 ```
 
-## 更新旅行内容
-
-打开 `data/trips.js`，照着已有格式增加一段。每一段就是一个国家或城市板块，里面同时包含：
-
-- 地点和日期
-- 封面图
-- 简短介绍
-- 标签
-- 路线图位置和景点插画
-- 旅游日记
-- 分类照片：我拍的、我本人、我吃的
-
-网站里的旅行路线图、独立详情页、照片放大都会自动读取这里的数据。
-
-每条旅行在路线图上的位置用 `route` 控制：
-
-```js
-route: { x: 52, y: 38, landmark: "eiffel" }
-```
-
-`x` 是从左到右的位置百分比，`y` 是从上到下的位置百分比。比如：
-
-- `x: 10, y: 20` 靠左上
-- `x: 50, y: 50` 在中间
-- `x: 80, y: 70` 靠右下
-
-`landmark` 控制旁边的小景点插画，目前有：
-
-- `chinaMountain`
-- `tower`
-- `burj`
-- `eiffel`
-- `sun`
-- `dome`
-- `mountain`
-
-这个路线图不需要联网，也不依赖外部地图服务。点击路线上的景点，会跳转到 `trip.html?id=...` 独立详情页。
-
-## 更换照片
-
-把照片放进：
+新建一个数据库，比如：
 
 ```text
-assets/photos/
+travel-journal-db
 ```
 
-然后在 `data/trips.js` 里把图片路径改成：
+进入这个数据库的 Console，把 `cloudflare-d1-schema.sql` 里面的内容全部复制进去运行。
 
-```js
-cover: "./assets/photos/your-photo.jpg"
+### 2. 创建 R2 存照片
+
+Cloudflare 左侧找到：
+
+```text
+R2 Object Storage
 ```
 
-详情页里的照片按三类放：
+新建一个 bucket，比如：
 
-```js
-photoGroups: {
-  scenery: [
-    { src: "./assets/photos/paris-street.jpg", caption: "街角" }
-  ],
-  me: [
-    { src: "./assets/photos/paris-me.jpg", caption: "我在巴黎" }
-  ],
-  food: [
-    { src: "./assets/photos/paris-dessert.jpg", caption: "甜点" }
-  ]
-}
+```text
+travel-journal-photos
 ```
 
-旅游日记按日期和一句记忆写：
+### 3. 给 Pages 项目绑定 D1/R2
 
-```js
-diary: [
-  { date: "2026.06.12", memory: "今天走了很多路，傍晚的街很好看。" }
-]
+进入你的 Pages 项目：
+
+```text
+Workers & Pages -> travel-journal-site -> Settings -> Bindings
 ```
+
+添加 D1 binding：
+
+```text
+Variable name: DB
+D1 database: travel-journal-db
+```
+
+添加 R2 binding：
+
+```text
+Variable name: PHOTOS
+R2 bucket: travel-journal-photos
+```
+
+### 4. 设置后台密码
+
+还是在 Pages 项目 Settings 里，找到 Environment variables，添加：
+
+```text
+ADMIN_PASSWORD = 你自己设置的后台密码
+```
+
+保存后重新部署一次。
+
+## 以后怎么更新内容
+
+部署成功后打开：
+
+```text
+https://travel-journal-site.pages.dev/admin.html
+```
+
+你可以在后台做这些事：
+
+- 新增城市
+- 设置城市在中国足迹地图上的 x/y 位置
+- 添加旅游日记
+- 上传照片
+- 选择照片分类：`我拍的 / 我本人 / 我吃的`
+
+前台会自动读取数据库，不需要再手改 `data/trips.js`。
+
+## 如果还没配置 Cloudflare
+
+也可以继续手动改 `data/trips.js`。这份本地数据是备用数据，用来保证 D1 还没连上时网站也能显示。
 
 照片文件名建议只用英文、数字和连字符，例如：
 
 ```text
-paris-day-1.jpg
-tokyo-cafe.png
+chengdu-street-01.jpg
+paris-dessert.png
 ```
+
+## 本地说明
+
+直接双击 `index.html` 可以看静态备用数据。
+
+Cloudflare API 和后台上传照片需要部署到 Cloudflare Pages 后才会真正工作。

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>后台 - Ying's Little Atlas</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./admin.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html">Ying's Little Atlas</a>
+      <nav aria-label="主导航">
+        <a href="./index.html">前台</a>
+      </nav>
+    </header>
+
+    <main class="admin-shell">
+      <section class="admin-panel" id="admin-login">
+        <p class="eyebrow">Admin</p>
+        <h1>旅行后台</h1>
+        <p>登录后新增城市、日记和照片，不用再手改代码。</p>
+        <form class="admin-form" id="login-form">
+          <label>
+            后台密码
+            <input name="password" type="password" autocomplete="current-password" required>
+          </label>
+          <button type="submit">登录</button>
+        </form>
+      </section>
+
+      <section class="admin-panel" id="admin-app" hidden>
+        <div class="admin-head">
+          <div>
+            <p class="eyebrow">Content</p>
+            <h1>更新旅行内容</h1>
+          </div>
+          <button type="button" id="logout-button">退出</button>
+        </div>
+
+        <div class="admin-grid">
+          <form class="admin-form" id="city-form">
+            <h2>新增城市</h2>
+            <label>
+              国家
+              <select name="country_id" id="country-select" required></select>
+            </label>
+            <label>
+              城市名
+              <input name="name" placeholder="成都" required>
+            </label>
+            <label>
+              城市 ID
+              <input name="id" placeholder="chengdu" required>
+            </label>
+            <label>
+              日期
+              <input name="date" placeholder="2026.07">
+            </label>
+            <label>
+              简介
+              <textarea name="summary" rows="3" placeholder="火锅、茶馆和慢悠悠的街。"></textarea>
+            </label>
+            <div class="admin-row">
+              <label>
+                地图 X
+                <input name="map_x" type="number" min="0" max="100" step="1" value="50">
+              </label>
+              <label>
+                地图 Y
+                <input name="map_y" type="number" min="0" max="100" step="1" value="50">
+              </label>
+            </div>
+            <button type="submit">保存城市</button>
+          </form>
+
+          <form class="admin-form" id="diary-form">
+            <h2>添加日记</h2>
+            <label>
+              城市
+              <select name="city_id" class="city-select" required></select>
+            </label>
+            <label>
+              日期
+              <input name="date" placeholder="2026.07.13">
+            </label>
+            <label>
+              简单记忆
+              <textarea name="memory" rows="4" required></textarea>
+            </label>
+            <button type="submit">保存日记</button>
+          </form>
+
+          <form class="admin-form" id="photo-form">
+            <h2>上传照片</h2>
+            <label>
+              城市
+              <select name="city_id" class="city-select" required></select>
+            </label>
+            <label>
+              分类
+              <select name="category">
+                <option value="scenery">我拍的</option>
+                <option value="me">我本人</option>
+                <option value="food">我吃的</option>
+              </select>
+            </label>
+            <label>
+              照片说明
+              <input name="caption" placeholder="成都街角">
+            </label>
+            <label>
+              选择照片
+              <input name="photo" type="file" accept="image/*" required>
+            </label>
+            <button type="submit">上传照片</button>
+          </form>
+        </div>
+      </section>
+
+      <p class="admin-status" id="admin-status"></p>
+    </main>
+
+    <script src="./admin.js"></script>
+  </body>
+</html>

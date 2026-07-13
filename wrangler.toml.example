@@ -1,0 +1,12 @@
+name = "travel-journal-site"
+compatibility_date = "2026-07-13"
+pages_build_output_dir = "."
+
+[[d1_databases]]
+binding = "DB"
+database_name = "travel-journal-db"
+database_id = "在 Cloudflare D1 页面复制 database_id"
+
+[[r2_buckets]]
+binding = "PHOTOS"
+bucket_name = "travel-journal-photos"
