@@ -1379,33 +1379,31 @@ h2 {
 
 @media (max-width: 760px) {
   .footprint-map {
-    width: 760px;
-    min-width: 760px;
-    height: 540px;
-    margin: 20px 0;
+    width: 100%;
+    min-width: 0;
+    height: 360px;
+    margin: 20px 0 32px;
+    overflow: visible;
   }
 
-  .footprint-section {
-    overflow-x: auto;
-    padding-bottom: 12px;
-  }
-
-  .footprint-section::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .footprint-section::-webkit-scrollbar-thumb {
-    background: #d9d9d2;
-    border-radius: 999px;
+  .country-sketch {
+    transform: scale(1.03);
+    transform-origin: center;
   }
 
   .map-place strong {
-    font-size: 18px;
-    padding: 5px 9px;
+    font-size: 14px;
+    padding: 3px 7px;
+    line-height: 1.15;
   }
 
   .map-place span {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
+    box-shadow: 0 0 0 8px rgba(142, 165, 137, 0.13);
+  }
+
+  .map-place {
+    gap: 4px;
   }
 }
