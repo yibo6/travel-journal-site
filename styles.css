@@ -1410,3 +1410,36 @@ h2 {
   }
 }
 
+.city-float-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.city-float-layer span {
+  position: absolute;
+  top: -24px;
+  color: #3c3c3c;
+  font-family: var(--font-body);
+  font-size: 24px;
+  opacity: 0;
+  animation: city-float-drop 1.65s ease-out forwards;
+}
+
+@keyframes city-float-drop {
+  0% {
+    transform: translate3d(0, -20px, 0) rotate(0deg);
+    opacity: 0;
+  }
+
+  18% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translate3d(var(--drift), 78vh, 0) rotate(var(--spin));
+    opacity: 0;
+  }
+}

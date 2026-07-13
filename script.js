@@ -478,3 +478,68 @@ document.addEventListener("click", (event) => {
 
   history.pushState(null, "", targetId);
 });
+
+const cityFloatEffects = {
+  harbin: ["❄", "❅", "❆"],
+  yanbian: ["✦", "◇", "✧"],
+  beijing: ["印", "云", "✦"],
+  qingdao: ["〜", "○", "泡"],
+  shanghai: ["✦", "光", "◇"],
+  hangzhou: ["叶", "〜", "◌"],
+  anhui: ["山", "瓦", "⌂"],
+  wuhan: ["桥", "热", "〜"],
+  "western-sichuan": ["山", "云", "雪"],
+  chengdu: ["辣", "茶", "✦"],
+  jiangxi: ["山", "水", "◌"],
+  changsha: ["辣", "火", "签"],
+  "hong-kong": ["✦", "光", "星"],
+  macau: ["♢", "星", "牌"],
+};
+
+function floatCityBits(cityId) {
+  const bits = cityFloatEffects[cityId] || ["✦", "◇", "◌"];
+  const layer = document.createElement("div");
+  layer.className = "city-float-layer";
+  document.body.appendChild(layer);
+
+  for (let i = 0; i < 18; i += 1) {
+    const bit = document.createElement("span");
+    bit.textContent = bits[i % bits.length];
+    bit.style.left = `${Math.random() * 100}%`;
+    bit.style.animationDelay = `${Math.random() * 0.35}s`;
+    bit.style.setProperty("--drift", `${Math.random() * 80 - 40}px`);
+    bit.style.setProperty("--spin", `${Math.random() * 50 - 25}deg`);
+    layer.appendChild(bit);
+  }
+
+  window.setTimeout(() => layer.remove(), 1900);
+}
+
+document.addEventListener("click", (event) => {
+  const mapPlace = event.target.closest(".map-place");
+  if (!mapPlace) return;
+
+  const targetId = mapPlace.getAttribute("href");
+  if (!targetId?.startsWith("#city-")) return;
+
+  const cityId = targetId.replace("#city-", "");
+  const target = document.querySelector(targetId);
+  if (!target) return;
+
+  event.preventDefault();
+
+  floatCityBits(cityId);
+
+  const mapScroller = mapPlace.closest(".footprint-section");
+  mapScroller?.scrollTo({ left: 0, behavior: "smooth" });
+  document.documentElement.scrollLeft = 0;
+  document.body.scrollLeft = 0;
+
+  window.setTimeout(() => {
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+    history.pushState(null, "", targetId);
+  }, 420);
+});
