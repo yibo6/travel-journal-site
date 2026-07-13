@@ -1379,31 +1379,56 @@ h2 {
 
 @media (max-width: 760px) {
   .footprint-map {
+    display: grid;
+    height: auto;
+    min-height: 0;
     width: 100%;
-    min-width: 0;
-    height: 360px;
-    margin: 20px 0 32px;
-    overflow: visible;
+    gap: 12px;
   }
 
   .country-sketch {
-    transform: scale(1.03);
-    transform-origin: center;
-  }
-
-  .map-place strong {
-    font-size: 14px;
-    padding: 3px 7px;
-    line-height: 1.15;
-  }
-
-  .map-place span {
-    width: 14px;
-    height: 14px;
-    box-shadow: 0 0 0 8px rgba(142, 165, 137, 0.13);
+    display: none;
   }
 
   .map-place {
-    gap: 4px;
+    position: relative;
+    left: auto !important;
+    top: auto !important;
+    transform: none;
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .map-place span {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    box-shadow: 0 0 0 8px rgba(142, 165, 137, 0.14);
+  }
+
+  .map-place strong {
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    font-size: 22px;
+  }
+
+  .map-place::after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 36px;
+    bottom: -8px;
+    width: 2px;
+    background: #deded7;
+    z-index: -1;
+  }
+
+  .map-place:last-child::after {
+    display: none;
   }
 }
