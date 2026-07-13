@@ -478,16 +478,3 @@ document.addEventListener("click", (event) => {
 
   history.pushState(null, "", targetId);
 });
-
-@media (min-width: 761px) {
-  .footprint-map {
-    width: min(980px, 100%);
-    height: 640px;
-    margin: 28px auto 44px;
-  }
-
-  .country-sketch {
-    transform: scale(1.12);
-    transform-origin: center;
-  }
-}
