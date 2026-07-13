@@ -462,19 +462,15 @@ backTop?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-function fallbackMessages() {
-  return [
-    { name: "小颖的朋友", message: "这个路线图好可爱，像在翻一本慢慢长大的旅行本。" },
-    { name: "路过的人", message: "想看重庆和冰岛的照片！" },
-    { name: "另一个路过的人", message: "香港那一站好有毕业旅行的感觉。" },
-  ];
-}
-
 function renderMessages(messages) {
   if (!messageWall) return;
 
-  const items = messages.length ? messages : fallbackMessages();
-  messageWall.innerHTML = items
+  if (!messages.length) {
+    messageWall.innerHTML = `<p class="message-empty">还没有小纸条，等第一位路过的人。</p>`;
+    return;
+  }
+
+  messageWall.innerHTML = messages
     .map(
       (item) => `
         <article class="message-note">
@@ -501,7 +497,7 @@ async function loadMessages() {
     const data = await response.json();
     renderMessages(data.messages || []);
   } catch {
-    renderMessages(fallbackMessages());
+    renderMessages([]);
   }
 }
 

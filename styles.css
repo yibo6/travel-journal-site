@@ -1625,6 +1625,14 @@ h2 {
   font-size: 14px;
 }
 
+.message-empty {
+  margin: 0;
+  padding: 30px 0;
+  color: #a2a2a2;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
 @media (max-width: 760px) {
   .message-board {
     display: block;
