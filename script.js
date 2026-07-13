@@ -449,3 +449,32 @@ window.addEventListener("scroll", () => {
 backTop?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+document.addEventListener("click", (event) => {
+  const mapPlace = event.target.closest(".map-place");
+  if (!mapPlace) return;
+
+  const targetId = mapPlace.getAttribute("href");
+  if (!targetId?.startsWith("#")) return;
+
+  const target = document.querySelector(targetId);
+  if (!target) return;
+
+  event.preventDefault();
+
+  const mapScroller = mapPlace.closest(".footprint-section");
+  mapScroller?.scrollTo({
+    left: 0,
+    behavior: "smooth",
+  });
+
+  document.documentElement.scrollLeft = 0;
+  document.body.scrollLeft = 0;
+
+  target.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+
+  history.pushState(null, "", targetId);
+});
