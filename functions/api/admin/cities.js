@@ -12,6 +12,18 @@ export async function onRequestPost({ request, env }) {
       return error("城市 ID、国家和城市名都要填。", 400);
     }
 
+    const existingCity = await db
+      .prepare("SELECT id, order_index FROM cities WHERE id = ?")
+      .bind(city.id)
+      .first();
+    const firstCity = await db
+      .prepare("SELECT MIN(order_index) AS first_order FROM cities WHERE country_id = ?")
+      .bind(city.country_id)
+      .first();
+    const orderIndex = existingCity
+      ? existingCity.order_index
+      : Number(firstCity?.first_order ?? 0) - 1;
+
     await db
       .prepare(
         `INSERT INTO cities
@@ -36,7 +48,7 @@ export async function onRequestPost({ request, env }) {
         city.name,
         Number(city.map_x || 50),
         Number(city.map_y || 50),
-        Date.now(),
+        orderIndex,
       )
       .run();
 
