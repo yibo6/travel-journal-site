@@ -32,6 +32,43 @@
         </div>
         <div class="travel-map" id="travel-map" aria-label="旅行地点地图"></div>
       </section>
+
+      <section class="message-board" aria-labelledby="message-title">
+        <div class="message-intro">
+          <p class="eyebrow">Notes</p>
+          <h2 id="message-title">路过的人，留张小纸条吧。</h2>
+        </div>
+
+        <form class="message-form">
+          <label>
+            昵称
+            <input name="name" type="text" maxlength="20" placeholder="路过的人" required>
+          </label>
+          <label>
+            想说的话
+            <textarea name="message" rows="4" maxlength="200" placeholder="写点什么贴在这里……" required></textarea>
+          </label>
+          <button type="submit">贴上去</button>
+          <p class="message-status" aria-live="polite"></p>
+        </form>
+
+        <div class="message-wall" aria-label="小纸条墙">
+          <article class="message-note">
+            <p>这个路线图好可爱，像在翻一本慢慢长大的旅行本。</p>
+            <span>小颖的朋友</span>
+          </article>
+
+          <article class="message-note">
+            <p>想看重庆和冰岛的照片！</p>
+            <span>路过的人</span>
+          </article>
+
+          <article class="message-note">
+            <p>香港那一站好有毕业旅行的感觉。</p>
+            <span>另一个路过的人</span>
+          </article>
+        </div>
+      </section>
     </main>
 
     <footer class="footer">

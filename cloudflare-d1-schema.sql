@@ -47,6 +47,13 @@ CREATE TABLE IF NOT EXISTS photos (
   order_index INTEGER DEFAULT 0
 );
 
+CREATE TABLE IF NOT EXISTS messages (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  message TEXT NOT NULL,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
 INSERT INTO countries
   (id, title, place, date, route_x, route_y, landmark, cover_url, summary, tags, map_title, map_note, order_index)
 VALUES

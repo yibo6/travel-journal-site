@@ -7,6 +7,9 @@ const lightboxImage = lightbox?.querySelector("img");
 const lightboxCaption = lightbox?.querySelector("p");
 const lightboxClose = document.querySelector(".lightbox-close");
 const backTop = document.querySelector("#back-top");
+const messageForm = document.querySelector(".message-form");
+const messageWall = document.querySelector(".message-wall");
+const messageStatus = document.querySelector(".message-status");
 
 function slugify(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -18,6 +21,15 @@ function tripId(trip, index = 0) {
 
 function tagList(tags) {
   return tags.map((tag) => `<span>${tag}</span>`).join("");
+}
+
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 function diaryEntries(trip) {
@@ -450,6 +462,83 @@ backTop?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+function fallbackMessages() {
+  return [
+    { name: "小颖的朋友", message: "这个路线图好可爱，像在翻一本慢慢长大的旅行本。" },
+    { name: "路过的人", message: "想看重庆和冰岛的照片！" },
+    { name: "另一个路过的人", message: "香港那一站好有毕业旅行的感觉。" },
+  ];
+}
+
+function renderMessages(messages) {
+  if (!messageWall) return;
+
+  const items = messages.length ? messages : fallbackMessages();
+  messageWall.innerHTML = items
+    .map(
+      (item) => `
+        <article class="message-note">
+          <p>${escapeHtml(item.message)}</p>
+          <span>${escapeHtml(item.name)}</span>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function setMessageStatus(text, isError = false) {
+  if (!messageStatus) return;
+  messageStatus.textContent = text;
+  messageStatus.classList.toggle("error", isError);
+}
+
+async function loadMessages() {
+  if (!messageWall) return;
+
+  try {
+    const response = await fetch("./api/messages", { headers: { Accept: "application/json" } });
+    if (!response.ok) throw new Error("留言读取失败");
+    const data = await response.json();
+    renderMessages(data.messages || []);
+  } catch {
+    renderMessages(fallbackMessages());
+  }
+}
+
+messageForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const nameInput = messageForm.elements.name;
+  const messageInput = messageForm.elements.message;
+  const name = nameInput.value.trim();
+  const message = messageInput.value.trim();
+
+  if (!name || !message) {
+    setMessageStatus("昵称和小纸条都要写。", true);
+    return;
+  }
+
+  setMessageStatus("正在贴上去...");
+
+  try {
+    const response = await fetch("./api/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, message }),
+    });
+
+    if (!response.ok) throw new Error("留言保存失败");
+
+    messageForm.reset();
+    setMessageStatus("贴好啦。");
+    await loadMessages();
+  } catch {
+    setMessageStatus("暂时没贴上去，等一下再试试。", true);
+  }
+});
+
+loadMessages();
+
 document.addEventListener("click", (event) => {
   const mapPlace = event.target.closest(".map-place");
   if (!mapPlace) return;
@@ -478,4 +567,3 @@ document.addEventListener("click", (event) => {
 
   history.pushState(null, "", targetId);
 });
-

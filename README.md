@@ -9,6 +9,7 @@
 - 中国旅游足迹地图
 - 照片分类：`我拍的 / 我本人 / 我吃的`
 - 后台页面：`/admin.html`
+- 首页小纸条留言板
 - Cloudflare Pages Functions API：`/api/...`
 - D1 初始化脚本：`cloudflare-d1-schema.sql`
 
@@ -32,6 +33,7 @@ data/
 assets/
 functions/
 cloudflare-d1-schema.sql
+message-board-migration.sql
 wrangler.toml.example
 .nojekyll
 ```
@@ -57,6 +59,12 @@ travel-journal-db
 ```
 
 进入这个数据库的 Console，把 `cloudflare-d1-schema.sql` 里面的内容全部复制进去运行。
+
+如果你之前已经运行过旧版 schema，只需要额外运行：
+
+```text
+message-board-migration.sql
+```
 
 ### 2. 创建 R2 存照片
 
