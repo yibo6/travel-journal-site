@@ -1410,3 +1410,19 @@ h2 {
   }
 }
 
+@media (min-width: 761px) {
+  .footprint-section {
+    max-width: 1180px;
+  }
+
+  .footprint-map {
+    width: min(1120px, 100%);
+    height: 700px;
+    margin: 30px auto 54px;
+  }
+
+  .country-sketch {
+    transform: scale(1.08);
+    transform-origin: center center;
+  }
+}
