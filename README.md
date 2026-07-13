@@ -34,6 +34,7 @@ assets/
 functions/
 cloudflare-d1-schema.sql
 message-board-migration.sql
+china-city-order-migration.sql
 wrangler.toml.example
 .nojekyll
 ```

@@ -19,53 +19,25 @@ window.TRIPS = [
       title: "中国旅游足迹",
       note: "地图上亮起来的地方，点开就能抵达。",
       places: [
-        { name: "哈尔滨", id: "harbin", x: 72, y: 20, visited: true },
-        { name: "延边", id: "yanbian", x: 78, y: 28, visited: true },
-        { name: "北京", id: "beijing", x: 58, y: 28, visited: true },
-        { name: "青岛", id: "qingdao", x: 76, y: 43, visited: true },
         { name: "上海", id: "shanghai", x: 78, y: 56, visited: true },
-        { name: "杭州", id: "hangzhou", x: 74, y: 61, visited: true },
-        { name: "安徽", id: "anhui", x: 65, y: 57, visited: true },
-        { name: "武汉", id: "wuhan", x: 55, y: 60, visited: true },
-        { name: "川西", id: "western-sichuan", x: 35, y: 55, visited: true },
-        { name: "成都", id: "chengdu", x: 43, y: 58, visited: true },
-        { name: "江西", id: "jiangxi", x: 62, y: 62, visited: true },
-        { name: "长沙", id: "changsha", x: 58, y: 66, visited: true },
+        { name: "澳门", id: "macau", x: 58, y: 78, visited: true },
         { name: "香港", id: "hong-kong", x: 64, y: 76, visited: true },
-        { name: "澳门", id: "macau", x: 58, y: 78, visited: true }
+        { name: "北京", id: "beijing", x: 58, y: 28, visited: true },
+        { name: "景德镇", id: "jingdezhen", x: 64, y: 64, visited: true },
+        { name: "延边", id: "yanbian", x: 78, y: 28, visited: true },
+        { name: "哈尔滨", id: "harbin", x: 72, y: 20, visited: true },
+        { name: "成都", id: "chengdu", x: 43, y: 58, visited: true },
+        { name: "川西", id: "western-sichuan", x: 35, y: 55, visited: true },
+        { name: "重庆", id: "chongqing", x: 51, y: 62, visited: true },
+        { name: "青岛", id: "qingdao", x: 76, y: 43, visited: true },
+        { name: "长沙", id: "changsha", x: 60, y: 71, visited: true },
+        { name: "张家界", id: "zhangjiajie", x: 54, y: 68, visited: true },
+        { name: "武汉", id: "wuhan", x: 56, y: 55, visited: true },
+        { name: "黄山", id: "huangshan", x: 67, y: 57, visited: true },
+        { name: "杭州", id: "hangzhou", x: 76, y: 66, visited: true }
       ]
     },
     cities: [
-      {
-        id: "harbin",
-        name: "哈尔滨",
-        date: "待更新",
-        summary: "冰雪、中央大街和带着东北气息的城市记忆。",
-        diary: [
-          { date: "待更新", memory: "这里可以写哈尔滨那一站最想留下来的一个瞬间。" }
-        ],
-        photoGroups: { scenery: [], me: [], food: [] }
-      },
-      {
-        id: "yanbian",
-        name: "延边朝鲜族自治州",
-        date: "待更新",
-        summary: "边境城市、朝鲜族风味和很有地方感的街道。",
-        diary: [
-          { date: "待更新", memory: "这里可以写延边的食物、街道，或者某一段很特别的路上记忆。" }
-        ],
-        photoGroups: { scenery: [], me: [], food: [] }
-      },
-      {
-        id: "qingdao",
-        name: "青岛",
-        date: "待更新",
-        summary: "海风、红瓦屋顶、坡路和很适合慢慢走的城市。",
-        diary: [
-          { date: "待更新", memory: "这里可以写青岛的海边、街道，或者一张最喜欢的风景照。" }
-        ],
-        photoGroups: { scenery: [], me: [], food: [] }
-      },
       {
         id: "shanghai",
         name: "上海",
@@ -73,76 +45,6 @@ window.TRIPS = [
         summary: "高楼、街角、夜色和很城市的光。",
         diary: [
           { date: "待更新", memory: "这里可以写上海的某个街角、夜景，或者一次很适合散步的下午。" }
-        ],
-        photoGroups: { scenery: [], me: [], food: [] }
-      },
-      {
-        id: "hangzhou",
-        name: "杭州",
-        date: "待更新",
-        summary: "湖边、山色、树影和慢慢走的城市节奏。",
-        diary: [
-          { date: "待更新", memory: "这里可以写杭州的湖边、山里，或者某个突然安静下来的瞬间。" }
-        ],
-        photoGroups: { scenery: [], me: [], food: [] }
-      },
-      {
-        id: "anhui",
-        name: "安徽",
-        date: "待更新",
-        summary: "山水、古村和很适合慢慢走的地方。",
-        diary: [
-          { date: "待更新", memory: "这里可以写安徽的山、水、古村，或者某段安静的路上记忆。" }
-        ],
-        photoGroups: { scenery: [], me: [], food: [] }
-      },
-      {
-        id: "wuhan",
-        name: "武汉",
-        date: "待更新",
-        summary: "江边、桥、热干面和很有烟火气的城市。",
-        diary: [
-          { date: "待更新", memory: "这里可以写武汉的江边、街道，或者吃到热干面的那一天。" }
-        ],
-        photoGroups: { scenery: [], me: [], food: [] }
-      },
-      {
-        id: "western-sichuan",
-        name: "川西",
-        date: "待更新",
-        summary: "雪山、草地、公路和一路变化的天气。",
-        diary: [
-          { date: "待更新", memory: "这里可以写川西路上的风景、海拔、天气，或者某个停下来的瞬间。" }
-        ],
-        photoGroups: { scenery: [], me: [], food: [] }
-      },
-      {
-        id: "chengdu",
-        name: "成都",
-        date: "待更新",
-        summary: "火锅、茶馆、街边慢悠悠的生活感。",
-        diary: [
-          { date: "待更新", memory: "这里可以写成都那一站吃到的、看到的，或者很松弛的一天。" }
-        ],
-        photoGroups: { scenery: [], me: [], food: [] }
-      },
-      {
-        id: "changsha",
-        name: "长沙",
-        date: "待更新",
-        summary: "夜市、小吃、湘江和热闹的城市节奏。",
-        diary: [
-          { date: "待更新", memory: "这里可以写长沙的夜晚、吃到的东西，或者某条很热闹的街。" }
-        ],
-        photoGroups: { scenery: [], me: [], food: [] }
-      },
-      {
-        id: "hong-kong",
-        name: "香港",
-        date: "待更新",
-        summary: "高楼、海风、叮叮车和很密的城市光。",
-        diary: [
-          { date: "待更新", memory: "这里可以写香港那一站最想留下来的一个瞬间。" }
         ],
         photoGroups: { scenery: [], me: [], food: [] }
       },
@@ -157,6 +59,16 @@ window.TRIPS = [
         photoGroups: { scenery: [], me: [], food: [] }
       },
       {
+        id: "hong-kong",
+        name: "香港",
+        date: "待更新",
+        summary: "高楼、海风、叮叮车和很密的城市光。",
+        diary: [
+          { date: "待更新", memory: "这里可以写香港那一站最想留下来的一个瞬间。" }
+        ],
+        photoGroups: { scenery: [], me: [], food: [] }
+      },
+      {
         id: "beijing",
         name: "北京",
         date: "待更新",
@@ -167,12 +79,122 @@ window.TRIPS = [
         photoGroups: { scenery: [], me: [], food: [] }
       },
       {
-        id: "jiangxi",
-        name: "江西",
+        id: "jingdezhen",
+        name: "景德镇",
         date: "待更新",
-        summary: "山、水、老街和很多更安静的路上片段。",
+        summary: "瓷器、老街、窑火和慢慢逛出来的城市质感。",
         diary: [
-          { date: "待更新", memory: "这里可以写江西的一段短途、一次回忆，或者一张很喜欢的风景照。" }
+          { date: "待更新", memory: "这里可以写景德镇的瓷器、街道，或者某个很有手作感的瞬间。" }
+        ],
+        photoGroups: { scenery: [], me: [], food: [] }
+      },
+      {
+        id: "yanbian",
+        name: "延边朝鲜族自治州",
+        date: "待更新",
+        summary: "边境城市、朝鲜族风味和很有地方感的街道。",
+        diary: [
+          { date: "待更新", memory: "这里可以写延边的食物、街道，或者某一段很特别的路上记忆。" }
+        ],
+        photoGroups: { scenery: [], me: [], food: [] }
+      },
+      {
+        id: "harbin",
+        name: "哈尔滨",
+        date: "待更新",
+        summary: "",
+        diary: [
+          { date: "待更新", memory: "这里可以写哈尔滨那一站最想留下来的一个瞬间。" }
+        ],
+        photoGroups: { scenery: [], me: [], food: [] }
+      },
+      {
+        id: "chengdu",
+        name: "成都",
+        date: "待更新",
+        summary: "火锅、茶馆、街边慢悠悠的生活感。",
+        diary: [
+          { date: "待更新", memory: "这里可以写成都那一站吃到的、看到的，或者很松弛的一天。" }
+        ],
+        photoGroups: { scenery: [], me: [], food: [] }
+      },
+      {
+        id: "western-sichuan",
+        name: "川西",
+        date: "待更新",
+        summary: "雪山、草地、公路和一路变化的天气。",
+        diary: [
+          { date: "待更新", memory: "这里可以写川西路上的风景、海拔、天气，或者某个停下来的瞬间。" }
+        ],
+        photoGroups: { scenery: [], me: [], food: [] }
+      },
+      {
+        id: "chongqing",
+        name: "重庆",
+        date: "待更新",
+        summary: "山城、江边、轻轨穿楼和热辣辣的夜色。",
+        diary: [
+          { date: "待更新", memory: "这里可以写重庆那一站的山城路、江边夜景，或者一顿很热闹的火锅。" }
+        ],
+        photoGroups: { scenery: [], me: [], food: [] }
+      },
+      {
+        id: "qingdao",
+        name: "青岛",
+        date: "待更新",
+        summary: "海风、红瓦屋顶、坡路和很适合慢慢走的城市。",
+        diary: [
+          { date: "待更新", memory: "这里可以写青岛的海边、街道，或者一张最喜欢的风景照。" }
+        ],
+        photoGroups: { scenery: [], me: [], food: [] }
+      },
+      {
+        id: "changsha",
+        name: "长沙",
+        date: "待更新",
+        summary: "夜市、小吃、湘江和热闹的城市节奏。",
+        diary: [
+          { date: "待更新", memory: "这里可以写长沙的夜晚、吃到的东西，或者某条很热闹的街。" }
+        ],
+        photoGroups: { scenery: [], me: [], food: [] }
+      },
+      {
+        id: "zhangjiajie",
+        name: "张家界",
+        date: "待更新",
+        summary: "山峰、云雾、玻璃栈道和很有电影感的风景。",
+        diary: [
+          { date: "待更新", memory: "这里可以写张家界的山、云雾，或者某段很有电影感的路。" }
+        ],
+        photoGroups: { scenery: [], me: [], food: [] }
+      },
+      {
+        id: "wuhan",
+        name: "武汉",
+        date: "待更新",
+        summary: "江边、桥、热干面和很有烟火气的城市。",
+        diary: [
+          { date: "待更新", memory: "这里可以写武汉的江边、街道，或者吃到热干面的那一天。" }
+        ],
+        photoGroups: { scenery: [], me: [], food: [] }
+      },
+      {
+        id: "huangshan",
+        name: "黄山",
+        date: "待更新",
+        summary: "山、水、云海和很适合慢慢走的地方。",
+        diary: [
+          { date: "待更新", memory: "这里可以写黄山的山路、云海，或者某段安静的路上记忆。" }
+        ],
+        photoGroups: { scenery: [], me: [], food: [] }
+      },
+      {
+        id: "hangzhou",
+        name: "杭州",
+        date: "待更新",
+        summary: "湖边、山色、树影和慢慢走的城市节奏。",
+        diary: [
+          { date: "待更新", memory: "这里可以写杭州的湖边、山里，或者某个突然安静下来的瞬间。" }
         ],
         photoGroups: { scenery: [], me: [], food: [] }
       }
