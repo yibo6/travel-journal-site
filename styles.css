@@ -1,4 +1,4 @@
-@import url("https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css");
+@import url("https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.css");
 
 :root {
   --paper: #ffffff;
@@ -14,7 +14,7 @@
   --max: 1120px;
   --serif: "Songti SC", "Noto Serif CJK SC", "STSong", "SimSun", serif;
   --hand:
-    "LXGW WenKai", "Kaiti SC", "STKaiti", "KaiTi", "YuKyokasho", "Songti SC",
+    "LXGW WenKai Screen", "Kaiti SC", "STKaiti", "KaiTi", "YuKyokasho", "Songti SC",
     "Noto Serif CJK SC", serif;
   --sans:
     "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
