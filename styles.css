@@ -650,6 +650,49 @@ h2 {
   text-align: left;
 }
 
+.diary-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.diary-item {
+  display: grid;
+  grid-template-columns: 128px 1fr;
+  gap: 18px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+
+.diary-item:first-child {
+  border-top: 0;
+}
+
+.diary-item time {
+  color: var(--muted);
+  font-family: Georgia, "Times New Roman", var(--hand);
+  font-size: 14px;
+}
+
+.diary-item p {
+  margin: 0;
+  color: #504c45;
+  font-size: 17px;
+}
+
+.photo-groups {
+  display: grid;
+  gap: 30px;
+  margin-top: 18px;
+}
+
+.photo-category h3 {
+  margin: 0 0 12px;
+  font-family: var(--hand);
+  font-size: 22px;
+  font-weight: 650;
+}
+
 .detail-notes {
   margin: 16px 0 0;
   padding-left: 1.2em;
@@ -1141,6 +1184,11 @@ h2 {
   .dialog-gallery,
   .detail-gallery {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .diary-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 
   .detail-hero {

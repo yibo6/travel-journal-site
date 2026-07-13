@@ -36,8 +36,8 @@ Folder: /root
 - 简短介绍
 - 标签
 - 路线图位置和景点插画
-- 旅行心得
-- 照片列表
+- 旅游日记
+- 分类照片：我拍的、我本人、我吃的
 
 网站里的旅行路线图、独立详情页、照片放大都会自动读取这里的数据。
 
@@ -77,6 +77,30 @@ assets/photos/
 
 ```js
 cover: "./assets/photos/your-photo.jpg"
+```
+
+详情页里的照片按三类放：
+
+```js
+photoGroups: {
+  scenery: [
+    { src: "./assets/photos/paris-street.jpg", caption: "街角" }
+  ],
+  me: [
+    { src: "./assets/photos/paris-me.jpg", caption: "我在巴黎" }
+  ],
+  food: [
+    { src: "./assets/photos/paris-dessert.jpg", caption: "甜点" }
+  ]
+}
+```
+
+旅游日记按日期和一句记忆写：
+
+```js
+diary: [
+  { date: "2026.06.12", memory: "今天走了很多路，傍晚的街很好看。" }
+]
 ```
 
 照片文件名建议只用英文、数字和连字符，例如：

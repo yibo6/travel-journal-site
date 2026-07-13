@@ -20,6 +20,36 @@ function tagList(tags) {
   return tags.map((tag) => `<span>${tag}</span>`).join("");
 }
 
+function diaryEntries(trip) {
+  if (trip.diary?.length) return trip.diary;
+  return (trip.notes || []).map((memory, index) => ({
+    date: index === 0 ? trip.date : "Memory",
+    memory,
+  }));
+}
+
+function photoGroups(trip) {
+  const groups = trip.photoGroups || {};
+  return [
+    {
+      key: "scenery",
+      title: "我拍的",
+      photos: groups.scenery || trip.photos || [],
+    },
+    { key: "me", title: "我本人", photos: groups.me || [] },
+    { key: "food", title: "我吃的", photos: groups.food || [] },
+  ];
+}
+
+function renderPhotoButton(photo, place) {
+  return `
+    <button type="button" data-photo="${photo.src}" data-caption="${photo.caption} · ${place}">
+      <img src="${photo.src}" alt="${photo.caption}">
+      <span>${photo.caption}</span>
+    </button>
+  `;
+}
+
 function landmarkSvg(type) {
   const icons = {
     gate: `
@@ -190,26 +220,42 @@ function renderTripPage() {
         </div>
       </div>
       <section class="detail-section">
-        <p class="eyebrow">Photos</p>
-        <div class="detail-gallery">
-          ${trip.photos
+        <p class="eyebrow">Travel diary</p>
+        <h2>旅游日记</h2>
+        <div class="diary-list">
+          ${diaryEntries(trip)
             .map(
-              (photo) => `
-                <button type="button" data-photo="${photo.src}" data-caption="${photo.caption} · ${trip.place}">
-                  <img src="${photo.src}" alt="${photo.caption}">
-                  <span>${photo.caption}</span>
-                </button>
+              (entry) => `
+                <article class="diary-item">
+                  <time>${entry.date}</time>
+                  <p>${entry.memory}</p>
+                </article>
               `,
             )
             .join("")}
         </div>
       </section>
       <section class="detail-section">
-        <p class="eyebrow">Notes</p>
-        <h2>旅行记录</h2>
-        <ul class="detail-notes">
-          ${trip.notes.map((note) => `<li>${note}</li>`).join("")}
-        </ul>
+        <p class="eyebrow">Photos</p>
+        <h2>照片</h2>
+        <div class="photo-groups">
+          ${photoGroups(trip)
+            .map(
+              (group) => `
+                <section class="photo-category photo-category-${group.key}">
+                  <h3>${group.title}</h3>
+                  ${
+                    group.photos.length
+                      ? `<div class="detail-gallery">${group.photos
+                          .map((photo) => renderPhotoButton(photo, trip.place))
+                          .join("")}</div>`
+                      : `<p class="empty-state">这一格先空着，等照片慢慢掉落。</p>`
+                  }
+                </section>
+              `,
+            )
+            .join("")}
+        </div>
       </section>
     </article>
   `;
